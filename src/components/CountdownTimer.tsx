@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const CountdownTimer = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -27,11 +27,11 @@ const CountdownTimer = () => {
   }, []);
 
   return (
-    <div className="flex justify-center space-x-8">
+    <div className="flex justify-center space-x-8 md:space-x-12 animate-fade-in">
       {Object.entries(timeLeft).map(([unit, value]) => (
         <div key={unit} className="text-center">
-          <div className="text-4xl font-bold text-rose-600">{value}</div>
-          <div className="text-sm text-gray-600 capitalize">{unit}</div>
+          <div className="text-5xl md:text-6xl font-playfair font-bold text-wedding-beige">{value}</div>
+          <div className="text-sm md:text-base text-wedding-cream font-cormorant uppercase tracking-wider">{unit}</div>
         </div>
       ))}
     </div>
