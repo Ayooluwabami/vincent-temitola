@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 const CountdownTimer = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -9,7 +9,7 @@ const CountdownTimer = () => {
   });
 
   useEffect(() => {
-    const weddingDate = new Date('2025-04-26T11:00:00').getTime();
+    const weddingDate = new Date('2025-04-26T11:00:00+00:00').getTime(); // WAT is UTC+1
 
     const timer = setInterval(() => {
       const now = new Date().getTime();
@@ -27,11 +27,15 @@ const CountdownTimer = () => {
   }, []);
 
   return (
-    <div className="flex justify-center space-x-8 md:space-x-12 animate-fade-in">
+    <div className="flex justify-center space-x-4 sm:space-x-8 md:space-x-12 animate-fade-in">
       {Object.entries(timeLeft).map(([unit, value]) => (
         <div key={unit} className="text-center">
-          <div className="text-5xl md:text-6xl font-playfair font-bold text-wedding-beige">{value}</div>
-          <div className="text-sm md:text-base text-wedding-cream font-cormorant uppercase tracking-wider">{unit}</div>
+          <div className="text-3xl sm:text-5xl md:text-6xl font-playfair font-bold text-wedding-sand">
+            {value}
+          </div>
+          <div className="text-xs sm:text-sm md:text-base text-wedding-cream font-cormorant uppercase tracking-wider">
+            {unit}
+          </div>
         </div>
       ))}
     </div>

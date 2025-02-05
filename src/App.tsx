@@ -1,14 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Navbar from './components/Navbar';
 import CountdownTimer from './components/CountdownTimer';
-import { Copy, Calendar, Heart } from 'lucide-react';
+import { Copy, Calendar, Heart, Download } from 'lucide-react';
+import { Loader } from '@googlemaps/js-api-loader';
 
 // Image imports
 import heroImage from './assets/HeroImage.jpg';
 import traditionalImage from './assets/traditional.jpg';
 import casualImage from './assets/casual.jpg';
 import trad2Image from './assets/trad2.jpg';
-import informalImage from './assets/informal.jpg';
+import casual2Image from './assets/casual2.jpg';
 import tradImage from './assets/trad.jpg';
 import casual5Image from './assets/casual5.jpg';
 import traditional5Image from './assets/traditional5.jpg';
@@ -23,16 +24,65 @@ import moment4Image from './assets/traditional3.jpg';
 
 function App() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const mapRef = useRef<HTMLDivElement>(null);
 
   const heroImages = [
-    heroImage,
-    traditionalImage,
-    casualImage,
-    trad2Image,
-    informalImage,
-    tradImage,
-    casual5Image,
-    traditional5Image
+    {
+      url: heroImage,
+      style: {
+        backgroundSize: '95%',
+        backgroundPosition: 'center 55%'
+      }
+    },
+    {
+      url: traditionalImage,
+      style: {
+        backgroundSize: '95%',
+        backgroundPosition: 'center 5%'
+      }
+    },
+    {
+      url: casualImage,
+      style: {
+        backgroundSize: '95%',
+        backgroundPosition: 'center 3%'
+      }
+    },
+    {
+      url: trad2Image,
+      style: {
+        backgroundSize: '95%',
+        backgroundPosition: 'center 20%'
+      }
+    },
+    {
+      url: casual2Image,
+      style: {
+        backgroundSize: '95%',
+        backgroundPosition: 'center 5%'
+      }
+    },
+    {
+      url: tradImage,
+      style: {
+        backgroundSize: '95%',
+        backgroundPosition: 'center 25%'
+      }
+    },
+    {
+      url: casual5Image,
+      style: {
+        backgroundSize: '95%',
+        backgroundPosition: 'center 25%'
+      }
+    },
+    {
+      url: traditional5Image,
+      style: {
+        backgroundSize: '95%',
+        backgroundPosition: 'center 5%'
+      }
+    }
   ];
 
   useEffect(() => {
@@ -40,10 +90,47 @@ function App() {
       setCurrentImageIndex((prevIndex) =>
         prevIndex === heroImages.length - 1 ? 0 : prevIndex + 1
       );
-    }, 5000); // Change image every 5 seconds
+    }, 5000);
 
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    const initMap = async () => {
+      const loader = new Loader({
+        apiKey: "YOUR_GOOGLE_MAPS_API_KEY", // Replace with your API key
+        version: "weekly"
+      });
+
+      const { Map, Marker } = await loader.importLibrary("maps");
+
+      const position = { lat: 7.2571, lng: 5.2058 }; // Akure coordinates
+
+      if (mapRef.current) {
+        const map = new Map(mapRef.current, {
+          center: position,
+          zoom: 14,
+        });
+
+        new Marker({
+          position: position,
+          map: map,
+          title: "Wedding Venue"
+        });
+      }
+    };
+
+    initMap();
+  }, []);
+
+  const downloadImage = (imageUrl: string, imageName: string) => {
+    const link = document.createElement('a');
+    link.href = imageUrl;
+    link.download = imageName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   const events = [
     {
@@ -162,8 +249,9 @@ function App() {
             <div
               className="h-full bg-cover bg-center"
               style={{
-                backgroundImage: `url(${image})`,
-                backgroundSize: '90%',
+                backgroundImage: `url(${image.url})`,
+                ...image.style,
+                backgroundRepeat: 'no-repeat',
                 transform: index === currentImageIndex ? 'scale(1.1)' : 'scale(1)',
                 transition: 'transform 10s ease-out'
               }}
@@ -171,13 +259,13 @@ function App() {
           </div>
         ))}
         <div className="absolute inset-0 bg-wedding-dark/50" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-wedding-white">
-          <h1 className="font-playfair text-6xl md:text-8xl mb-4 animate-fade-in">
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-wedding-white px-4">
+          <h1 className="font-playfair text-4xl sm:text-6xl md:text-8xl mb-4 animate-fade-in text-center">
             <span className="text-wedding-white">Vincent</span>
-            <span className="text-wedding-pink mx-4">&</span>
+            <span className="text-wedding-pink mx-2 sm:mx-4">&</span>
             <span className="text-wedding-white">Temitola</span>
           </h1>
-          <p className="font-cormorant text-xl md:text-2xl mb-12 text-wedding-cream animate-slide-up">
+          <p className="font-cormorant text-lg sm:text-xl md:text-2xl mb-8 sm:mb-12 text-wedding-cream animate-slide-up text-center">
             April 26, 2025 • Akure, Nigeria
           </p>
           <CountdownTimer />
@@ -252,7 +340,7 @@ function App() {
         </div>
       </section>
 
-      {/* Schedule Section */}
+      {/* Schedule Section with Map */}
       <section id="schedule" className="py-20 bg-wedding-cream">
         <div className="max-w-4xl mx-auto px-4">
           <h2 className="font-playfair text-5xl text-center text-wedding-sand mb-12 animate-fade-in">Wedding Schedule</h2>
@@ -282,6 +370,15 @@ function App() {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Add Google Map */}
+          <div className="mt-12">
+            <h3 className="font-playfair text-3xl text-center text-wedding-sand mb-6">Venue Location</h3>
+            <div
+              ref={mapRef}
+              className="w-full h-[400px] rounded-lg shadow-lg mb-6"
+            />
           </div>
         </div>
       </section>
@@ -416,8 +513,14 @@ function App() {
                     }}
                   >
                     <div className="absolute inset-0 bg-wedding-dark bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300" />
-                    <div className="absolute inset-0 flex items-end opacity-0 group-hover:opacity-100 transition-all duration-300">
-                      <p className="text-wedding-cream p-4 font-cormorant text-lg">{photo.caption}</p>
+                    <div className="absolute inset-0 flex flex-col items-end justify-between p-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      <button
+                        onClick={() => downloadImage(photo.url, `wedding-${index + 1}.jpg`)}
+                        className="bg-wedding-sand text-wedding-dark p-2 rounded-full hover:bg-wedding-pink transition-colors duration-300"
+                      >
+                        <Download className="w-5 h-5" />
+                      </button>
+                      <p className="text-wedding-cream font-cormorant text-lg w-full">{photo.caption}</p>
                     </div>
                   </div>
                 </div>
