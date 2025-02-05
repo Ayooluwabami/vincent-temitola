@@ -9,7 +9,8 @@ const CountdownTimer = () => {
   });
 
   useEffect(() => {
-    const weddingDate = new Date('2025-04-26T11:00:00+00:00').getTime(); // WAT is UTC+1
+    // Define the wedding date in WAT (UTC+1)
+    const weddingDate = new Date('2025-04-26T10:00:00+01:00').getTime(); // WAT time (UTC+1)
 
     const timer = setInterval(() => {
       const now = new Date().getTime();

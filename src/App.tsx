@@ -98,9 +98,10 @@ function App() {
   useEffect(() => {
     const initMap = async () => {
       const loader = new Loader({
-        apiKey: "YOUR_GOOGLE_MAPS_API_KEY", // Replace with your API key
+        apiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
         version: "weekly"
       });
+
 
       const { Map, Marker } = await loader.importLibrary("maps");
 
@@ -180,7 +181,37 @@ function App() {
       url: moment4Image,
       caption: "Traditional Prewedding Photoshoot",
       style: { backgroundSize: 'cover', backgroundPosition: 'top center' }
-    }
+    },
+    {
+      url: trad2Image,
+      caption: "Prewedding Photoshoot",
+      style: { backgroundSize: 'cover', backgroundPosition: 'center' }
+    },
+    {
+      url: casual2Image,
+      caption: "Casual Prewedding Photoshoot",
+      style: { backgroundSize: 'contain', backgroundPosition: 'top' }
+    },
+    {
+      url: heroImage,
+      caption: "Casual Prewedding Photoshoot",
+      style: { backgroundSize: 'cover', backgroundPosition: 'center 90%' }
+    },
+    {
+      url: traditional5Image,
+      caption: "Traditional Prewedding Photoshoot",
+      style: { backgroundSize: 'cover', backgroundPosition: 'top center' }
+    },
+    {
+      url: stylishImage,
+      caption: "Prewedding Photoshoot",
+      style: { backgroundSize: 'cover', backgroundPosition: 'center 10%' }
+    },
+    {
+      url: casual5Image,
+      caption: "Casual Prewedding Photoshoot",
+      style: { backgroundSize: 'cover', backgroundPosition: 'center' }
+    },
   ];
 
   const weddingParty = {
@@ -499,7 +530,7 @@ function App() {
       {/* Moments Section */}
       <section id="moments" className="py-20 bg-wedding-dark">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="font-playfair text-5xl text-center text-wedding-sand mb-12 animate-fade-in">Our Journey Together</h2>
+          <h2 className="font-playfair text-5xl text-center text-wedding-sand mb-12 animate-fade-in">Gallery</h2>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {moments.map((photo, index) => (

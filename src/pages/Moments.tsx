@@ -31,7 +31,7 @@ const Moments = () => {
   return (
     <div className="pt-16 min-h-screen">
       <div className="max-w-6xl mx-auto px-4 py-16">
-        <h1 className="font-dancing text-5xl text-center text-rose-600 mb-12">Our Journey Together</h1>
+        <h1 className="font-dancing text-5xl text-center text-rose-600 mb-12">Gallery</h1>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {photos.map((photo, index) => (
