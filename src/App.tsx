@@ -341,9 +341,9 @@ function App() {
                 <div
                   className="h-full w-full bg-cover bg-center image-hover"
                   style={{
-                    backgroundImage: `url(${casualImage})`,
+                    backgroundImage: `url(${casual5Image})`,
                     backgroundSize: "95%",
-                    backgroundPosition: "top center",
+                    backgroundPosition: "center",
                   }}
                 />
               </div>
@@ -352,9 +352,9 @@ function App() {
                 <div
                   className="h-full w-full bg-cover bg-center image-hover"
                   style={{
-                    backgroundImage: `url(${stylishImage})`,
-                    backgroundSize: "90%",
-                    backgroundPosition: "top",
+                    backgroundImage: `url(${tradImage})`,
+                    backgroundSize: "95%",
+                    backgroundPosition: "center 30%",
                   }}
                 />
               </div>
