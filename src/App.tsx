@@ -31,7 +31,7 @@ function App() {
       url: heroImage,
       style: {
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundPosition: 'center 55%',
         '@media (max-width: 768px)': {
           backgroundSize: 'cover',
           backgroundPosition: 'center'
@@ -42,7 +42,7 @@ function App() {
       url: traditionalImage,
       style: {
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundPosition: 'center 5%',
         '@media (max-width: 768px)': {
           backgroundSize: 'cover',
           backgroundPosition: 'center'
@@ -53,7 +53,7 @@ function App() {
       url: casualImage,
       style: {
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundPosition: 'center 3%',
         '@media (max-width: 768px)': {
           backgroundSize: 'cover',
           backgroundPosition: 'center'
@@ -64,7 +64,7 @@ function App() {
       url: trad2Image,
       style: {
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundPosition: 'center 20%',
         '@media (max-width: 768px)': {
           backgroundSize: 'cover',
           backgroundPosition: 'center'
@@ -75,7 +75,7 @@ function App() {
       url: casual2Image,
       style: {
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundPosition: 'center 5%',
         '@media (max-width: 768px)': {
           backgroundSize: 'cover',
           backgroundPosition: 'center'
@@ -86,7 +86,7 @@ function App() {
       url: tradImage,
       style: {
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundPosition: 'center 25%',
         '@media (max-width: 768px)': {
           backgroundSize: 'cover',
           backgroundPosition: 'center'
@@ -97,7 +97,7 @@ function App() {
       url: casual5Image,
       style: {
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundPosition: 'center 25%',
         '@media (max-width: 768px)': {
           backgroundSize: 'cover',
           backgroundPosition: 'center'
@@ -108,7 +108,7 @@ function App() {
       url: traditional5Image,
       style: {
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundPosition: 'center 5%',
         '@media (max-width: 768px)': {
           backgroundSize: 'cover',
           backgroundPosition: 'center'
@@ -127,34 +127,34 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const initMap = async () => {
-      const loader = new Loader({
-        apiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
-        version: "weekly"
-      });
+  // useEffect(() => {
+  //   const initMap = async () => {
+  //     const loader = new Loader({
+  //       apiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
+  //       version: "weekly"
+  //     });
 
 
-      const { Map, Marker } = await loader.importLibrary("maps");
+  //     const { Map, Marker } = await loader.importLibrary("maps");
 
-      const position = { lat: 7.2571, lng: 5.2058 }; // Akure coordinates
+  //     const position = { lat: 7.2571, lng: 5.2058 }; // Akure coordinates
 
-      if (mapRef.current) {
-        const map = new Map(mapRef.current, {
-          center: position,
-          zoom: 14,
-        });
+  //     if (mapRef.current) {
+  //       const map = new Map(mapRef.current, {
+  //         center: position,
+  //         zoom: 14,
+  //       });
 
-        new Marker({
-          position: position,
-          map: map,
-          title: "Wedding Venue"
-        });
-      }
-    };
+  //       new Marker({
+  //         position: position,
+  //         map: map,
+  //         title: "Wedding Venue"
+  //       });
+  //     }
+  //   };
 
-    initMap();
-  }, []);
+  //   initMap();
+  // }, []);
 
   const downloadImage = (imageUrl: string, imageName: string) => {
     const link = document.createElement('a');
