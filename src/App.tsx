@@ -30,88 +30,88 @@ function App() {
     {
       url: heroImage,
       style: {
-        backgroundSize: '100%',
-        backgroundPosition: 'center 20%',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
         '@media (max-width: 768px)': {
-          backgroundSize: 'contain',
-          backgroundPosition: 'center top'
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
         }
       }
     },
     {
       url: traditionalImage,
       style: {
-        backgroundSize: '100%',
-        backgroundPosition: 'center 5%',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
         '@media (max-width: 768px)': {
-          backgroundSize: 'contain',
-          backgroundPosition: 'center top'
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
         }
       }
     },
     {
       url: casualImage,
       style: {
-        backgroundSize: '100%',
-        backgroundPosition: 'center 3%',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
         '@media (max-width: 768px)': {
-          backgroundSize: 'contain',
-          backgroundPosition: 'center top'
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
         }
       }
     },
     {
       url: trad2Image,
       style: {
-        backgroundSize: '100%',
-        backgroundPosition: 'center 20%',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
         '@media (max-width: 768px)': {
-          backgroundSize: 'contain',
-          backgroundPosition: 'center top'
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
         }
       }
     },
     {
       url: casual2Image,
       style: {
-        backgroundSize: '100%',
-        backgroundPosition: 'center 5%',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
         '@media (max-width: 768px)': {
-          backgroundSize: 'contain',
-          backgroundPosition: 'center top'
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
         }
       }
     },
     {
       url: tradImage,
       style: {
-        backgroundSize: '100%',
-        backgroundPosition: 'center 25%',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
         '@media (max-width: 768px)': {
-          backgroundSize: 'contain',
-          backgroundPosition: 'center top'
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
         }
       }
     },
     {
       url: casual5Image,
       style: {
-        backgroundSize: '100%',
-        backgroundPosition: 'center 25%',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
         '@media (max-width: 768px)': {
-          backgroundSize: 'contain',
-          backgroundPosition: 'center top'
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
         }
       }
     },
     {
       url: traditional5Image,
       style: {
-        backgroundSize: '100%',
-        backgroundPosition: 'center 5%',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
         '@media (max-width: 768px)': {
-          backgroundSize: 'contain',
-          backgroundPosition: 'center top'
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
         }
       }
     }
@@ -303,7 +303,7 @@ function App() {
 
       <main className="flex-grow">
         {/* Hero Section */}
-        <section id="home" className="h-screen relative overflow-hidden">
+        <section id="home" className="h-screen w-full relative overflow-hidden">
           {heroImages.map((image, index) => (
             <div
               key={index}
@@ -311,7 +311,7 @@ function App() {
                 }`}
             >
               <div
-                className="h-full bg-no-repeat md:bg-cover"
+                className="h-full w-full bg-no-repeat bg-center"
                 style={{
                   backgroundImage: `url(${image.url})`,
                   ...image.style,
@@ -323,12 +323,12 @@ function App() {
           ))}
           <div className="absolute inset-0 bg-wedding-dark/50" />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-wedding-white px-4">
-            <h1 className="font-playfair text-4xl sm:text-6xl md:text-8xl mb-4 animate-fade-in text-center">
+            <h1 className="font-playfair text-3xl sm:text-5xl md:text-7xl lg:text-8xl mb-4 animate-fade-in text-center leading-tight">
               <span className="text-wedding-white">Vincent</span>
               <span className="text-wedding-pink mx-2 sm:mx-4">&</span>
               <span className="text-wedding-white">Temitola</span>
             </h1>
-            <p className="font-cormorant text-lg sm:text-xl md:text-2xl mb-8 sm:mb-12 text-wedding-cream animate-slide-up text-center">
+            <p className="font-cormorant text-base sm:text-lg md:text-xl lg:text-2xl mb-8 sm:mb-12 text-wedding-cream animate-slide-up text-center">
               April 26, 2025 • Akure, Nigeria
             </p>
             <CountdownTimer />
@@ -594,10 +594,9 @@ function App() {
         </section>
       </main>
 
-      {/* Footer */}
       <footer className="bg-wedding-dark py-6 text-center text-wedding-cream mt-auto relative z-10">
         <p className="font-cormorant text-base">
-          © Ayobami Ekundayo
+          © Copyright Ayobami Ekundayo
         </p>
       </footer>
     </div>
